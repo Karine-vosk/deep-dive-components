@@ -22,33 +22,34 @@ import { Configuration, Configuration2 } from './model';
   templateUrl: './control.component.html',
   styleUrl: './control.component.css',
   encapsulation: ViewEncapsulation.None,
-  // host: {
-  //   class: 'control',
-  //   '(click)': 'onClick()',
-  // },
+  host: {
+    class: 'control',
+    '(click)': 'onClick()',
+  },
 })
 export class ControlComponent implements AfterContentInit {
-  @HostBinding('class') className = 'control';
+  // @HostBinding('class') className = 'control';
 
   // @HostListener('click', ['$event.target.value'])
   //  onClick(e: any) {
   //   console.log(e, 'click from ');
   //  }
   label = input.required<string>();
-  private el = inject(ElementRef);
+ private el = inject(ElementRef);
   //@ContentChild('input') control?: ElementRef<HTMLInputElement>;
   control = contentChild.required<ElementRef<HTMLInputElement>>('input');
   constructor() {
-    afterRender(() => {
-      console.log('afterRender');
-    });
+    // afterRender(() => {
+    //   console.log('afterRender');
+    // });
 
-    afterNextRender(() => {
-      console.log('afterNextRender');
-    });
+    // afterNextRender(() => {
+    //   console.log('afterNextRender');
+    // });
   }
 
   ngOnInit(): void {
+    //this.className= 'lldl'
     const exampleConfiguration = new Configuration();
     console.log(exampleConfiguration.appName); // "MyApp"
 
@@ -60,7 +61,8 @@ export class ControlComponent implements AfterContentInit {
   }
 
   onClick() {
-    console.log(this.el, 'click');
-    console.dir(this.control().nativeElement);
+    console.log(this.control(), 'click');
+    console.log(this.el, 'el');
+    console.dir('click');
   }
 }
